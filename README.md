@@ -22,6 +22,7 @@
 
 ## Структура
 
+```text
 nodejs-hw/
 ├── src/
 │   └── server.js         # Основний файл сервера
@@ -31,4 +32,5 @@ nodejs-hw/
 ├── eslint.config.mjs     # Конфігурація ESLint
 ├── package.json          # Залежності та скрипти
 └── README.md             # Документація
+
 
