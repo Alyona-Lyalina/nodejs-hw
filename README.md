@@ -1,4 +1,4 @@
-#Node.js Express Notes API
+## Node.js Express Notes API
 
 Навчальний проєкт з **Node.js** і **Express.js** для роботи з нотатками.
 
@@ -31,3 +31,4 @@ nodejs-hw/
 ├── eslint.config.mjs     # Конфігурація ESLint
 ├── package.json          # Залежності та скрипти
 └── README.md             # Документація
+
