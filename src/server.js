@@ -12,6 +12,7 @@ const app = express();
 const logger = pinoHttp({
   transport: {
     target: 'pino-pretty', 
+    options: { colorize: true },
   },
   customProps: (req, res) => ({
     operation: 'http-request',
