@@ -2,21 +2,18 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import pinoHttp from 'pino-http';
-
+import notesRoutes from './routes/notesRoutes.js';
+import { connectMongoDB } from './db/connectMongoDB.js';
 
 const PORT = process.env.PORT || 3000;
-
 const app = express();
-
 
 const logger = pinoHttp({
   transport: {
     target: 'pino-pretty', 
     options: { colorize: true },
   },
-  customProps: (req, res) => ({
-    operation: 'http-request',
-  }),
+  customProps: () => ({ operation: 'http-request' }),
   level: 'info',
 });
 app.use(logger);
@@ -26,20 +23,7 @@ app.use(cors());
 app.use(express.json());
 
 
-app.get('/notes', (req, res) => {
-  req.log.info('Handling GET /notes');
-  res.status(200).json({
-    message: 'Retrieved all notes',
-  });
-});
-
-app.get('/notes/:noteId', (req, res) => {
-  const noteId = req.params.noteId;
-  req.log.info(`Handling GET /notes/${noteId}`); 
-  res.status(200).json({
-    message: `Retrieved note with ID: ${noteId}`,
-  });
-});
+app.use('/notes', notesRoutes);
 
 
 app.get('/test-error', (req, res, next) => {
@@ -48,27 +32,25 @@ app.get('/test-error', (req, res, next) => {
 });
 
 
-
 app.use((req, res, next) => {
   req.log.warn(`Route not found: ${req.method} ${req.originalUrl}`); 
-  res.status(404).json({
-    message: 'Route not found',
-  });
+  res.status(404).json({ message: 'Route not found' });
 });
 
 
 app.use((err, req, res, next) => {
   req.log.error(err, 'Caught server error'); 
-
   const statusCode = err.status || 500;
-  
-  res.status(statusCode).json({
-    message: err.message || 'Internal Server Error',
+  res.status(statusCode).json({ message: err.message || 'Internal Server Error' });
+});
+
+
+const startServer = async () => {
+  await connectMongoDB(); 
+  app.listen(PORT, () => {
+    console.log(`Server successfully started on port ${PORT}.`);
+    console.log(`Test links: http://localhost:${PORT}/notes and http://localhost:${PORT}/test-error`);
   });
-});
+};
 
-
-app.listen(PORT, () => {
-  console.log(`Server successfully started on port ${PORT}.`);
-  console.log(`Test links: http://localhost:${PORT}/notes and http://localhost:${PORT}/test-error`);
-});
+startServer();
