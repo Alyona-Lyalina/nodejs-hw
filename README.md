@@ -1,4 +1,4 @@
-# Homework 02 — MongoDB Integration
+# MongoDB Integration
 
 ## Мета
 
@@ -23,6 +23,7 @@
 - Обробка 404 і глобальних помилок (500, http-errors)
 
 ---
+
 
 
 
