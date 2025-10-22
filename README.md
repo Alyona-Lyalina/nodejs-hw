@@ -1,36 +1,28 @@
-## Node.js Express Notes API
+# Homework 02 — MongoDB Integration
 
-Навчальний проєкт з **Node.js** і **Express.js** для роботи з нотатками.
+## Мета
 
----
-
-## ⚙️ Функціональність
-- REST API для нотаток  
-- Логування через `pino-http`  
-- Підтримка `CORS`  
-- Використання `.env`  
-- Обробка помилок (404, 500)
+Розширити Express-додаток, підключивши **MongoDB** через **Mongoose**, реалізувати всі **CRUD-операції** та правильно організувати структуру коду.
 
 ---
 
-## 📡 Маршрути
-- **GET** `/notes` — усі нотатки  
-- **GET** `/notes/:noteId` — нотатка за ID  
-- **GET** `/test-error` — тест помилки
+## Критерії приймання
+
+- Гілка **02-mongodb**
+- Посилання на GitHub і Render.com
+- Сервер працює без помилок
+- Є підключення до MongoDB
+- Змінні в `.env`: `PORT`, `MONGO_URL`
+- Логування через **pino-http**
+- Реалізовані маршрути:
+  - `GET /notes`
+  - `GET /notes/:noteId`
+  - `POST /notes`
+  - `PATCH /notes/:noteId`
+  - `DELETE /notes/:noteId`
+- Обробка 404 і глобальних помилок (500, http-errors)
 
 ---
 
-## Структура
-
-```text
-nodejs-hw/
-├── src/
-│   └── server.js         # Основний файл сервера
-├── .env                  # Змінні оточення
-├── .gitignore            # Git ignore файл
-├── .prettierrc           # Конфігурація Prettier
-├── eslint.config.mjs     # Конфігурація ESLint
-├── package.json          # Залежності та скрипти
-└── README.md             # Документація
 
 
