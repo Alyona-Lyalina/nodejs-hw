@@ -1,28 +1,59 @@
-# MongoDB Integration
+# 📝 NodeJS Notes App with MongoDB
 
-## Мета
+## 👩‍💻 Про проект
 
-Розширити Express-додаток, підключивши **MongoDB** через **Mongoose**, реалізувати всі **CRUD-операції** та правильно організувати структуру коду.
+Проект **Notes App** на **Node.js + Express**, підключений до **MongoDB** через **Mongoose**.
+
+---
+
+## 🔹 Виконано
+
+- Підключення до MongoDB через **Mongoose** (`connectMongoDB.js`)  
+- Створена модель **Note** з полями:
+  - `title` — обов’язкове поле
+  - `content` — необов’язкове, за замовчуванням пусте
+  - `tag` — enum з 10 варіантами (default: Todo)  
+- Реалізовані **CRUD-операції**:
+  - `GET /notes` — повертає всі нотатки
+  - `GET /notes/:noteId` — повертає нотатку за ID
+  - `POST /notes` — створення нової нотатки
+  - `PATCH /notes/:noteId` — оновлення нотатки
+  - `DELETE /notes/:noteId` — видалення нотатки
+- Підключені **middleware**:
+  - `logger` — логування запитів
+  - `notFoundHandler` — обробка 404
+  - `errorHandler` — глобальна обробка помилок
+- Використана бібліотека **http-errors** для обробки помилок 404 та 500
+- Код організований у модулі:
+  - `controllers/`
+  - `routes/`
+  - `models/`
+  - `middleware/`
+  - `db/`
 
 ---
 
-## Критерії приймання
+## 🚀 Результат
 
-- Гілка **02-mongodb**
-- Посилання на GitHub і Render.com
-- Сервер працює без помилок
-- Є підключення до MongoDB
-- Змінні в `.env`: `PORT`, `MONGO_URL`
-- Логування через **pino-http**
-- Реалізовані маршрути:
-  - `GET /notes`
-  - `GET /notes/:noteId`
-  - `POST /notes`
-  - `PATCH /notes/:noteId`
-  - `DELETE /notes/:noteId`
-- Обробка 404 і глобальних помилок (500, http-errors)
+- Сервер працює стабільно, підключення до MongoDB успішне  
+- Кожен маршрут повертає коректний JSON з потрібним статусом  
+- Код чистий, логічно розділений, легко підтримується
 
 ---
+
+## 💻 Технології
+
+- Node.js
+- Express
+- MongoDB + Mongoose
+- http-errors
+- pino-http (логування)
+- cors
+- dotenv
+
+---
+
+
 
 
 
