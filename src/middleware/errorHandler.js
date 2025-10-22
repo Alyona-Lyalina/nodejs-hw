@@ -1,10 +1,17 @@
-export const errorHandler = (err, req, res, next) => {
-  console.error("Error Middleware:", err); 
+import { HttpError } from "http-errors";
 
+export const errorHandler = (err, req, res, next) => {
+  console.error("Error Middleware:", err);
+
+  const isHttpError = err instanceof HttpError;
   const status = err.status || 500;
   const isProd = process.env.NODE_ENV === "production";
 
-  res.status(status).json({
-    message: isProd ? "Something went wrong. Please try again later." : err.message,
-  });
+  const message = isHttpError
+    ? err.message || err.name
+    : isProd
+    ? "Internal Server Error"
+    : err.message;
+
+  res.status(status).json({ message });
 };
